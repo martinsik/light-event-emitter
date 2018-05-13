@@ -2,21 +2,26 @@
   "name": "light-event-emitter",
   "version": "0.1.0",
   "description": "Lightweight version of Angular's EventEmitter for better performance",
-  "main": "index.js",
+  "main": "bundle/light-event-emitter.umd.js",
   "directories": {
     "test": "test"
   },
   "dependencies": {},
   "devDependencies": {
     "@angular/core": "^6.0.1",
+    "@types/mocha": "^5.2.0",
+    "chai": "^4.1.2",
     "mocha": "^5.1.1",
+    "rollup": "^0.58.2",
     "rxjs": "^6.1.0",
     "typescript": "^2.8.3"
   },
   "scripts": {
     "build": "tsc && cp package.json dist/package.json",
+    "build-test": "tsc -p test/tsconfig.json",
+    "bundle": "npm run build && rollup dist/index.js -f umd -n 'myBundle' -m -o dist/bundle/light-event-emitter.umd.js",
     "link": "npm run build && cp -R dist test-pkg",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npm run build-test && mocha"
   },
   "repository": {
     "type": "git",
