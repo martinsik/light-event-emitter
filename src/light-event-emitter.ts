@@ -4,7 +4,6 @@ import { LightSubscription } from './light-subscription';
 import { pipeFromArray } from 'rxjs/internal/util/pipe';
 import { Observable } from 'rxjs/internal/Observable';
 import { Operator } from 'rxjs/internal/Operator';
-import { Subscription } from 'rxjs/internal/Subscription';
 
 export class LightEventEmitter<T> implements NextObserver<T>, Subscribable<T> {
 
@@ -21,25 +20,27 @@ export class LightEventEmitter<T> implements NextObserver<T>, Subscribable<T> {
     }
   }
 
-  subscribe(observerOrNext?: PartialObserver<T> | ((value: T) => void),
-            error?: (error: any) => void,
-            complete?: () => void): LightSubscription {
-
+  subscribe(observerOrNext?: PartialObserver<T> | ((value: T) => void)): LightSubscription {
+    const { observers, isAsync } = this;
     let normalizedObserver: NextObserver<T>;
 
     if (typeof observerOrNext === 'object') {
-      normalizedObserver = observerOrNext as NextObserver<T>;
+      normalizedObserver = isAsync
+        ? { next: value => setTimeout(() => observerOrNext.next(value)) }
+        : observerOrNext as NextObserver<T>;
     } else {
       normalizedObserver = {
-        next: observerOrNext,
-      };
+        next: isAsync
+          ? value => setTimeout(() => observerOrNext(value))
+          : observerOrNext
+      }
     }
 
-    this.observers.push(normalizedObserver);
-    const index = this.observers.length - 1;
+    observers.push(normalizedObserver);
+    const index = observers.length - 1;
 
     return new LightSubscription(() => {
-      this.observers.splice(index, 1);
+      observers.splice(index, 1);
     });
   }
 

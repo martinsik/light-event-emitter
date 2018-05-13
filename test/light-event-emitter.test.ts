@@ -122,4 +122,38 @@ describe('LightEventEmitter', () => {
       .subscribe()
       .unsubscribe();
   });
+
+  it('should throw an exception when trying to send an error notification', done => {
+    emitter.subscribe();
+
+    try {
+      emitter.error(new Error());
+    } catch(e) {
+      done();
+    }
+  });
+
+  it('should throw an exception when trying to send complete notification', done => {
+    emitter.subscribe();
+
+    try {
+      emitter.complete();
+    } catch(e) {
+      done();
+    }
+  });
+
+  it('should asynchronously receive 42 in its next handler', done => {
+    const log = [];
+    emitter = new LightEventEmitter(true);
+
+    emitter.subscribe(value => {
+      log.push(value);
+      assert.equal(value, 42);
+      done();
+    });
+
+    emitter.next(42);
+    assert.equal(log.length, 0);
+  });
 });
