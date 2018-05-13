@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "es5",
     "module": "commonjs",
-    "noImplicitAny": true,
+    "noImplicitAny": false,
     "noImplicitReturns": true,
     "noImplicitThis": true,
     "suppressImplicitAnyIndexErrors": true,
@@ -24,6 +24,7 @@
     "./**/*.test.ts"
   ],
   "exclude": [
-    "../node_modules"
+    "../node_modules",
+    ".."
   ]
 }
