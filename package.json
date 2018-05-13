@@ -1,0 +1,33 @@
+{
+  "name": "light-event-emitter",
+  "version": "0.1.0",
+  "description": "Lightweight version of Angular's EventEmitter for better performance",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@angular/core": "^6.0.1",
+    "rxjs": "^6.1.0",
+    "typescript": "^2.8.3"
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hackbit/angularattack2018-martinsikora.git"
+  },
+  "keywords": [
+    "angular",
+    "rxjs"
+  ],
+  "author": "Martin Sikora",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Hackbit/angularattack2018-martinsikora/issues"
+  },
+  "homepage": "https://github.com/Hackbit/angularattack2018-martinsikora#readme"
+}
