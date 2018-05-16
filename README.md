@@ -47,6 +47,8 @@ The following image shows a typical result ran on dual core MacBook Pro (mid 201
 
 ![typical results](https://raw.githubusercontent.com/martinsik/light-event-emitter/master/doc/results-0.png)
 
+*(Lower number is better)*
+
 ![results in a bar chart](https://raw.githubusercontent.com/martinsik/light-event-emitter/master/doc/bar-chart.png)
 
 Tests with a large number of components are measured as time Angular spent creating, adding them to the page and creating bindings.
