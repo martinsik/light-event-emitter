@@ -1,0 +1,18 @@
+language: node_js
+sudo: false
+
+cache:
+  directories:
+    - node_modules
+
+node_js:
+  - "node"
+  - "7"
+  - "6"
+
+install:
+  - npm install
+  - node -v
+  - npm -v
+  - npm run bundle
+  - npm run test

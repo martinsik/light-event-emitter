@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/martinsik/light-event-emitter.svg?branch=master)](https://travis-ci.org/martinsik/light-event-emitter)
+
+
 # LightEventEmitter
 
 `LightEventEmitter` is a simplified version Angular's default `EventEmitter` class that is used for all `Output()` bindings. It removes some of `EventEmitter`'s functionality that isn't necessary in 99.9% of use-cases in exchange for performance. 

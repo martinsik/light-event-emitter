@@ -9,7 +9,6 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@angular/core": "^6.0.1",
     "@types/chai": "^4.1.3",
     "@types/mocha": "^5.2.0",
     "chai": "^4.1.2",
@@ -22,7 +21,6 @@
     "build": "tsc",
     "build-test": "tsc -p test/tsconfig.json",
     "bundle": "npm run build && cp package.json dist/package.json && rollup dist/index.js -f umd -n 'LightEventEmitter' -m -o dist/bundle/light-event-emitter.umd.js",
-    "link": "npm run build && cp -R dist test-pkg",
     "test": "npm run build-test && mocha"
   },
   "repository": {

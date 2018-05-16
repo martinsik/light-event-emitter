@@ -1,9 +1,9 @@
-import { NextObserver, PartialObserver, SubscriptionLike } from 'rxjs/src/internal/types';
+import { NextObserver, PartialObserver } from 'rxjs/src/internal/types';
 import { OperatorFunction, Subscribable } from 'rxjs/internal/types';
-import { LightSubscription } from './light-subscription';
 import { pipeFromArray } from 'rxjs/internal/util/pipe';
 import { Observable } from 'rxjs/internal/Observable';
 import { Operator } from 'rxjs/internal/Operator';
+import { LightSubscription } from './light-subscription';
 
 export class LightEventEmitter<T> implements NextObserver<T>, Subscribable<T> {
 
