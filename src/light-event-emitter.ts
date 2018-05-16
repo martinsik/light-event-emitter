@@ -35,17 +35,13 @@ export class LightEventEmitter<T> implements NextObserver<T>, Subscribable<T> {
       }
     }
 
-    const index = observers.push(normalizedObserver) - 1;
+    observers.push(normalizedObserver);
 
     return {
       unsubscribe: () => {
-        observers.splice(observers.indexOf(normalizedObserver), 1);
+        this.observers = observers.filter(o => o !== normalizedObserver);
       }
     } as LightSubscription;
-  }
-
-  get activeObservers(): NextObserver<T>[] {
-    return this.observers.filter(Boolean);
   }
 
   pipe<R>(...operations: OperatorFunction<T, R>[]): Observable<R> {
