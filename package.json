@@ -1,9 +1,9 @@
 {
   "name": "light-event-emitter",
-  "version": "0.1.0",
+  "version": "0.1.3",
   "description": "Lightweight version of Angular's EventEmitter for better performance",
   "main": "bundle/light-event-emitter.umd.js",
-  "typings": "./dist/index.d.ts",
+  "typings": "index.d.ts",
   "directories": {
     "test": "test"
   },
@@ -27,16 +27,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Hackbit/angularattack2018-martinsikora.git"
+    "url": "git+https://github.com/martinsik/light-event-emitter.git"
   },
   "keywords": [
     "angular",
     "rxjs"
   ],
   "author": "Martin Sikora",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Hackbit/angularattack2018-martinsikora/issues"
+    "url": "https://github.com/martinsik/light-event-emittera/issues"
   },
-  "homepage": "https://github.com/Hackbit/angularattack2018-martinsikora#readme"
+  "homepage": "https://github.com/martinsik/light-event-emitter#readme"
 }

@@ -53,11 +53,11 @@ describe('LightEventEmitter', () => {
   });
 
   it('should be possible to unsubscribe', () => {
-    assert.equal((emitter as any).observers.length, 0);
+    assert.equal((emitter as any).activeObservers.length, 0);
     const subscription = emitter.subscribe();
-    assert.equal((emitter as any).observers.length, 1);
+    assert.equal((emitter as any).activeObservers.length, 1);
     subscription.unsubscribe();
-    assert.equal((emitter as any).observers.length, 0);
+    assert.equal((emitter as any).activeObservers.length, 0);
   });
 
   it('should should never receive emission after unsubscribing', () => {
@@ -104,7 +104,7 @@ describe('LightEventEmitter', () => {
     emitter.next(4);
 
     subscription.unsubscribe();
-    assert.equal((emitter as any).observers.length, 0);
+    assert.equal((emitter as any).activeObservers.length, 0);
   });
 
   it('should preserve order of tear-down functions', done => {

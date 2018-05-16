@@ -1,4 +1,4 @@
-import { NextObserver, PartialObserver } from 'rxjs/src/internal/types';
+import { NextObserver, PartialObserver, SubscriptionLike } from 'rxjs/src/internal/types';
 import { OperatorFunction, Subscribable } from 'rxjs/internal/types';
 import { LightSubscription } from './light-subscription';
 import { pipeFromArray } from 'rxjs/internal/util/pipe';
@@ -9,11 +9,10 @@ export class LightEventEmitter<T> implements NextObserver<T>, Subscribable<T> {
 
   private observers: NextObserver<T>[] = [];
 
-  constructor(private isAsync: boolean = false) {
-  }
+  constructor(private isAsync: boolean = false) {  }
 
   next(value: T): void {
-    const { observers } = this;
+    const observers = this.observers;
 
     for (const observer of observers) {
       observer.next(value);
@@ -36,12 +35,17 @@ export class LightEventEmitter<T> implements NextObserver<T>, Subscribable<T> {
       }
     }
 
-    observers.push(normalizedObserver);
-    const index = observers.length - 1;
+    const index = observers.push(normalizedObserver) - 1;
 
-    return new LightSubscription(() => {
-      observers.splice(index, 1);
-    });
+    return {
+      unsubscribe: () => {
+        observers.splice(observers.indexOf(normalizedObserver), 1);
+      }
+    } as LightSubscription;
+  }
+
+  get activeObservers(): NextObserver<T>[] {
+    return this.observers.filter(Boolean);
   }
 
   pipe<R>(...operations: OperatorFunction<T, R>[]): Observable<R> {
